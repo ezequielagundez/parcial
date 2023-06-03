@@ -1,3 +1,4 @@
+// Form.jsx
 import { useState } from "react";
 import styles from "./Form.module.css";
 
@@ -9,15 +10,16 @@ function Form(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (tarea.trim() === "" && persona.length<=6 ) {
-      setMensajeError("Verifique los datos por favor. ingrese una tarea y un nombre mayor a 5 digitos");
-      
+    if (tarea.trim() === "" || persona.length <= 5) {
+      setMensajeError(
+        "Verifique los datos por favor. Ingrese una tarea y un nombre mayor a 5 caracteres"
+      );
     } else {
-      props.onSubmit(tarea);
+      props.onSubmit(tarea, persona);
       setTarea("");
+      setPersona("");
       setMensajeError("");
     }
-
   };
 
   return (
@@ -44,9 +46,8 @@ function Form(props) {
         <button className={styles.button} type="submit">
           Crear
         </button>
-        
       </form>
-      {!tarea ? <p className={styles.msjerror} >{mensajeError}</p> : undefined}
+      {!tarea || persona.length <= 5 ? <p className={styles.msjerror}>{mensajeError}</p> : undefined}
     </div>
   );
 }

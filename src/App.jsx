@@ -1,33 +1,26 @@
-import { useState } from 'react'
-let autoId = 0;
-import './App.css'
-import Form from './components/Form'
-import Tarea from './components/Tarea'
+// App.jsx
+import { useState } from "react";
+import "./App.css";
+import Form from "./components/Form";
+import Tarea from "./components/Tarea";
 
 function App() {
-  const [tareas, setTareas] = useState([])
+  const [valores, setValores] = useState([]);
+  const [autoId, setAutoId] = useState(0);
 
+  const handleSubmit = (tarea, persona) => {
+    setValores([...valores, { tarea, persona, id: autoId }]);
+    setAutoId(autoId + 1);
+  };
 
-  const handleSubmit = (tarea,persona) => {
-    setTareas([...tareas, { nombre: tarea,id: autoId++}])
-    console.log( tarea, persona);
-    
-  }
- 
   return (
     <>
-     <Form onSubmit={handleSubmit} />
-     {
-          tareas.map(tarea => {
-            return(
-              <Tarea key={tarea.id} tarea={tarea.nombre}  persona={tarea.responsable} />
-            )
-          })
-        }
-
-      
+      <Form onSubmit={handleSubmit} />
+      {valores.map((valor) => (
+        <Tarea key={valor.id} tarea={valor.tarea} persona={valor.persona} />
+      ))}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
