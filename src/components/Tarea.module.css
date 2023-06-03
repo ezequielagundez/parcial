@@ -1,0 +1,18 @@
+.tarea_content{
+    background-color: rgba(255, 255, 255, 0.24);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tarea{
+    color: white;
+}
+
+.persona{
+    color: rgba(0, 0, 0, 0.774);
+}
